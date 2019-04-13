@@ -1,2 +1,2 @@
 # school-management
-A school management system build with JavaFX
+A school management system built with JavaFX
