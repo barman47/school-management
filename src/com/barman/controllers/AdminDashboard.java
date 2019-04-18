@@ -1,4 +1,4 @@
 package com.barman.controllers;
 
-public class Controller {
+public class AdminDashboard {
 }

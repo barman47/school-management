@@ -1,0 +1,28 @@
+.parent{
+    -fx-background-color: #e8e8e8;
+}
+
+.headerText {
+    -fx-font-size: 15px;
+}
+
+.input-field {
+    /*-fx-border-color: ffa500;*/
+    -fx-border-width: 1px;
+    -fx-focus-color: #ffa500;
+}
+
+.error-message {
+    -fx-text-fill: #ff0000;
+    -fx-margin-bottom: 10px;
+}
+
+Button {
+    -fx-background-color: #2193B0;
+    -fx-text-fill: #ffffff;
+    -fx-cursor: hand;
+}
+
+Button:hover {
+    -fx-background-color: #107C98;
+}
