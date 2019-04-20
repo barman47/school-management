@@ -3,11 +3,41 @@ package com.barman;
 import java.text.ParseException;
 
 public class Teacher extends Person {
-    public Teacher() {
+    private String module;
+    private String degree;
+    private Specialty teacherSpecialty;
 
+    public Teacher() {
     }
 
-    public Teacher(int number, String name, String firstName, String dateoFBirth) throws ParseException {
-        super(number, name, firstName, dateoFBirth);
+    public Teacher(int number, String name, String firstName, String dateOfBirth, String module, String degree, Specialty teacherSpecialty) throws ParseException {
+        super(number, name, firstName, dateOfBirth);
+        this.module = module;
+        this.degree = degree;
+        this.teacherSpecialty = teacherSpecialty;
+    }
+
+    public String getModule() {
+        return this.module;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
+    }
+
+    public String getDegree() {
+        return this.degree;
+    }
+
+    public void setDegree(String degree) {
+        this.degree = degree;
+    }
+
+    public Specialty getTeacherSpecialty() {
+        return this.teacherSpecialty;
+    }
+
+    public void setTeacherSpecialty(Specialty teacherSpecialty) {
+        this.teacherSpecialty = teacherSpecialty;
     }
 }

@@ -1,13 +1,22 @@
 package com.barman;
 
+import java.util.List;
+
 public class Specialty {
     private String name;
     private String sector;
     private int yearOfStudy;
-    private Student students;
+    private List<Student> students;
 
     public Specialty() {
 
+    }
+
+    public Specialty(String name, String sector, int yearOfStudy, List students) {
+        this.name = name;
+        this.sector = sector;
+        this.yearOfStudy = yearOfStudy;
+        this.students = students;
     }
 
     public String getName() {
@@ -34,11 +43,11 @@ public class Specialty {
         this.yearOfStudy = yearOfStudy;
     }
 
-    public Student getStudents() {
+    public List<Student> getStudents() {
         return this.students;
     }
 
-    public void setStudents(Student students) {
+    public void setStudents(List<Student> students) {
         this.students = students;
     }
 }

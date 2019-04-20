@@ -51,12 +51,13 @@ public class AdminLogin {
             Scene adminScene = new Scene(root, 800, 600);
             Stage loginStage = (Stage) ((Node)e.getSource()).getScene().getWindow();
             loginStage.hide();
-            loginStage.setScene(adminScene);
-            loginStage.setTitle("Admin Dashboard");
-            loginStage.setResizable(true);
-            loginStage.setMaximized(true);
-            loginStage.centerOnScreen();
-            loginStage.show();
+            Stage adminDashboardStage = loginStage;
+            adminDashboardStage.setScene(adminScene);
+            adminDashboardStage.setTitle("Admin Dashboard");
+            adminDashboardStage.setResizable(true);
+            adminDashboardStage.setMaximized(true);
+            adminDashboardStage.centerOnScreen();
+            adminDashboardStage.show();
         } else {
             Alert errorAlert = new Alert(Alert.AlertType.WARNING);
             errorAlert.setHeaderText("INVALID LOGIN DETAILS");
