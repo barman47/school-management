@@ -9,9 +9,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage window) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("views/login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("views/studentList.fxml"));
         window.setTitle("Admin Login");
-        Scene loginScene = new Scene(root, 300, 275);
+        Scene loginScene = new Scene(root, 1280, 768);
+//        Scene loginScene = new Scene(root, 300, 275);
         window.setResizable(false);
         window.setScene(loginScene);
         window.show();

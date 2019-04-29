@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.barman.controllers.StudentList">
+   <top>
+      <HBox spacing="30.0" style="-fx-background-color: yellow;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="59.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+               <image>
+                  <Image url="@../img/logo.PNG" />
+               </image>
+            </ImageView>
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="17.0" prefWidth="436.0" text="School Name Here" HBox.hgrow="ALWAYS" />
+            <Button fx:id="logoutButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Logout" HBox.hgrow="ALWAYS" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="612.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="57.0" prefWidth="635.0">
+               <children>
+                  <Label fx:id="adminName" prefHeight="17.0" prefWidth="352.0" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="date" prefHeight="17.0" prefWidth="183.0" text="January 31st, 2019." HBox.hgrow="ALWAYS" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="20.0" top="20.0" />
+               </padding>
+            </HBox>
+            <Label alignment="CENTER" prefHeight="95.0" prefWidth="1280.0" text="Student List" VBox.vgrow="ALWAYS">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="371.0" prefViewportHeight="400.0" prefWidth="1309.0" VBox.vgrow="ALWAYS">
+               <content>
+                  <TableView fx:id="studentTable" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="415.0" prefWidth="1400.0">
+                    <columns>
+                        <TableColumn fx:id="name" minWidth="-1.0" prefWidth="350.0" text="Name" />
+                        <TableColumn fx:id="firstName" minWidth="-1.0" prefWidth="350.0" text="First Name" />
+                        <TableColumn fx:id="dateOfBirth" minWidth="-1.0" prefWidth="350.0" text="Date of Birth" />
+                        <TableColumn fx:id="registrationNumber" minWidth="-1.0" prefWidth="200.0" text="Registration Number" />
+                    </columns>
+                  </TableView>
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <ButtonBar prefHeight="142.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+        <buttons>
+            <Button prefWidth="250.0" text="_View Students" wrapText="true" ButtonBar.buttonData="LEFT" />
+            <Button fx:id="exitButton" cancelButton="true" onAction="#handleExitButton" prefWidth="250.0" text="E_xit" />
+          <Button minWidth="50.0" prefHeight="25.0" prefWidth="250.0" text="_Add Student" ButtonBar.buttonData="RIGHT" />
+        </buttons>
+         <padding>
+            <Insets bottom="45.0" left="40.0" right="40.0" />
+         </padding>
+      </ButtonBar>
+   </bottom>
+</BorderPane>
