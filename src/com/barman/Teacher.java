@@ -1,17 +1,18 @@
 package com.barman;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 import java.text.ParseException;
+import java.time.LocalDate;
 
 public class Teacher extends Person {
     private String module;
     private String degree;
     private Specialty teacherSpecialty;
 
-    public Teacher() {
-    }
-
-    public Teacher(int number, String name, String firstName, String dateOfBirth, String module, String degree, Specialty teacherSpecialty) throws ParseException {
-        super(number, name, firstName, dateOfBirth);
+    public Teacher(int registrationNumber, String name, String firstName, String dateOfBirth, String module, String degree, Specialty teacherSpecialty) throws ParseException {
+        super(registrationNumber, name, firstName, dateOfBirth);
         this.module = module;
         this.degree = degree;
         this.teacherSpecialty = teacherSpecialty;

@@ -47,14 +47,14 @@ public class AdminLogin {
             usernameErrorMessage.setText("");
             passwordErrorMessage.setText("");
 
-            Parent root = FXMLLoader.load(getClass().getResource("../views/adminDashboard.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../views/studentList.fxml"));
             Scene adminScene = new Scene(root, 800, 600);
             Stage loginStage = (Stage) ((Node)e.getSource()).getScene().getWindow();
             loginStage.hide();
             Stage adminDashboardStage = loginStage;
             adminDashboardStage.setScene(adminScene);
             adminDashboardStage.setTitle("Admin Dashboard");
-            adminDashboardStage.setResizable(true);
+            adminDashboardStage.setResizable(false);
             adminDashboardStage.setMaximized(true);
             adminDashboardStage.centerOnScreen();
             adminDashboardStage.show();
