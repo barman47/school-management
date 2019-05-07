@@ -9,7 +9,10 @@ public class Specialty {
     private List<Student> students;
 
     public Specialty() {
-
+        this.name = "";
+        this.sector = "";
+        this.yearOfStudy = 0;
+        this.students = null;
     }
 
     public Specialty(String name, String sector, int yearOfStudy, List students) {

@@ -1,18 +1,10 @@
 package com.barman;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Locale;
 
 public class Person {
@@ -85,5 +77,4 @@ public class Person {
         String mainDate = day + "/" + monthAsInt + "/" + year;
         this.dateOfBirth = new SimpleStringProperty(mainDate);
     }
-
 }

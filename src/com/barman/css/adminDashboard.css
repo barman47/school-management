@@ -1,0 +1,30 @@
+BorderPane {
+    -fx-background-color: #333333;
+}
+
+.logout-button, .button {
+    -fx-background-color: #c2c2c2;
+    -fx-cursor: hand;
+}
+
+.logout-button:hover, .button:hover {
+    -fx-background-color: #c2c2c2;
+    -fx-text-fill: #2193B0;
+}
+
+.welcome-box, .date {
+    -fx-background-color: #444444;
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill: #c5c5c5;
+    -fx-font-size: 20px;
+}
+
+TableView, .column {
+    -fx-text-fill: #2193B0;
+}
+
+#textField {
+    -fx-background-color: #c2c2c2;
+    -fx-font-style: italic;
+    -fx-prompt-text-fill: #666666;
+}

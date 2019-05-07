@@ -43,11 +43,10 @@ public class AdminLogin {
         adminUsername = username.getText();
         adminPassword = password.getText();
         if (adminUsername.equals(name) && adminPassword.equals(firstName)) {
-            System.out.println("Correct username");
             usernameErrorMessage.setText("");
             passwordErrorMessage.setText("");
 
-            Parent root = FXMLLoader.load(getClass().getResource("../views/studentList.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../views/adminDashboard.fxml"));
             Scene adminScene = new Scene(root, 800, 600);
             Stage loginStage = (Stage) ((Node)e.getSource()).getScene().getWindow();
             loginStage.hide();
@@ -59,12 +58,7 @@ public class AdminLogin {
             adminDashboardStage.centerOnScreen();
             adminDashboardStage.show();
         } else {
-            Alert errorAlert = new Alert(Alert.AlertType.WARNING);
-            errorAlert.setHeaderText("INVALID LOGIN DETAILS");
-            errorAlert.setContentText("Username or Password is incorrect! Please Check.");
-            errorAlert.setTitle("WARNING");
-            errorAlert.show();
-
+            AddStudent.showAlert(Alert.AlertType.WARNING, "WARNING", "INVALID LOGIN DETAILS", "Username or Password is incorrect! Please Check.");
             if(!adminUsername.equals(name)){
                 usernameErrorMessage.setText("Incorrect Username");
             } else {

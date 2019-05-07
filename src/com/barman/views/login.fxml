@@ -43,7 +43,7 @@
             <VBox.margin>
                 <Insets bottom="10.0" />
             </VBox.margin></Label>
-        <Button fx:id="adminLoginButton" mnemonicParsing="false" onAction="#handleLogin" prefHeight="25.0" prefWidth="509.0" text="Login">
+        <Button fx:id="adminLoginButton" mnemonicParsing="false" defaultButton="true" onAction="#handleLogin" prefHeight="25.0" prefWidth="509.0" text="Login">
             <font>
                 <Font name="Lucida Bright" size="12.0" />
             </font></Button>

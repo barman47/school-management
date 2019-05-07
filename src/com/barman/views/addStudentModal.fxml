@@ -26,7 +26,7 @@
       </HBox>
       <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <TextField fx:id="newStudentNumber" prefWidth="250.0" promptText="Registration Number" />
+            <TextField fx:id="newStudentNumber" editable="false" prefWidth="250.0" promptText="Registration Number" />
             <DatePicker fx:id="newStudentDateOfBirth" editable="false" prefWidth="250.0" promptText="Date of Birth" showWeekNumbers="true" />
          </children>
          <padding>
@@ -36,8 +36,8 @@
       <HBox alignment="CENTER" spacing="50.0">
          <children>
             <Button fx:id="clearButton" onAction="#handleClearButton" prefWidth="100.0" text="C_lear" />
-            <Button fx:id="cancelButton" onAction="#handleCancelButton" cancelButton="true" prefWidth="100.0" text="_Cancel" />
-          <Button fx:id="addNewStudentButton" onAction="#addStudent" defaultButton="true" prefWidth="100.0" text="_Add Student" />
+            <Button fx:id="cancelButton" cancelButton="true" onAction="#handleCancelButton" prefWidth="100.0" text="_Cancel" />
+          <Button fx:id="addNewStudentButton" defaultButton="true" onAction="#addStudent" prefWidth="100.0" text="_Add Student" />
          </children>
          <VBox.margin>
             <Insets bottom="20.0" />

@@ -35,7 +35,7 @@ public class AddStudent implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        setNewStudentNumber();
     }
 
     @FXML
@@ -55,8 +55,9 @@ public class AddStudent implements Initializable {
             newStudent.setDateOfBirth(dateOfBirth);
             newStudent.setRegistrationNumber(new SimpleIntegerProperty(Integer.parseInt(newStudentNumber.getText())));
 
-            StudentList.handleAddStudent(newStudent);
-//            clearInputs();
+            AdminDashboard.handleAddStudent(newStudent);
+            clearInputs();
+            setNewStudentNumber();
         } catch (ParseException e) {
             e.printStackTrace();
         } catch(NullPointerException e) {
@@ -67,7 +68,6 @@ public class AddStudent implements Initializable {
     private void clearInputs() {
         newStudentName.setText(null);
         newStudentFirstName.setText(null);
-        newStudentNumber.setText(null);
         newStudentDateOfBirth.setValue(null);
     }
 
@@ -82,11 +82,15 @@ public class AddStudent implements Initializable {
         clearInputs();
     }
 
-    private void showAlert(Alert.AlertType alertType, String alertTitle, String alertHeader, String alertText){
+    public static void showAlert(Alert.AlertType alertType, String alertTitle, String alertHeader, String alertText){
         Alert alert = new Alert(alertType);
         alert.setHeaderText(alertHeader);
         alert.setTitle(alertTitle);
         alert.setContentText(alertText);
         alert.show();
+    }
+
+    private void setNewStudentNumber() {
+        newStudentNumber.setText(Integer.toString(AdminDashboard.getLastStudentNumber() + 1));
     }
 }

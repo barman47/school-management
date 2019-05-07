@@ -1,10 +1,6 @@
 package com.barman;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-
 import java.text.ParseException;
-import java.time.LocalDate;
 
 public class Teacher extends Person {
     private String module;
