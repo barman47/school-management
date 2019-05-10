@@ -33,6 +33,12 @@ public class SearchResults implements Initializable {
     @FXML
     private TableColumn<Student, Integer> registrationNumber;
 
+    @FXML
+    private TableColumn<Student, String> specialty;
+
+    @FXML
+    private TableColumn<Student, String> sector;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         searchStat.setText("Found " + AdminDashboard.getFoundStudents().size() + " Result(s).");
@@ -44,6 +50,8 @@ public class SearchResults implements Initializable {
         firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         dateOfBirth.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
         registrationNumber.setCellValueFactory(new PropertyValueFactory<>("registrationNumber"));
+        specialty.setCellValueFactory(new PropertyValueFactory<>("specialty"));
+        sector.setCellValueFactory(new PropertyValueFactory<>("sector"));
         returnedSearchTable.setItems(AdminDashboard.getFoundStudents());
     }
 

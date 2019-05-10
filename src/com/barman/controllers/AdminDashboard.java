@@ -21,7 +21,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -66,12 +65,19 @@ public class AdminDashboard implements Initializable {
     // Observable list of found students
     private static ObservableList<Student> returnedStudents = FXCollections.observableArrayList();
 
+    //list of Specialties
+    Specialty computerSpecialty = new Specialty();
+
+    Specialty mathsSpecialty = new Specialty();
+
+    Specialty biologySpecialty = new Specialty();
+
     // The Specialty
     private Specialty studentSpecialty = new Specialty();
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Setting the admin label value to "Chima Stella on line 14"
+        // Setting the admin label value to "Chima Stella"
         adminName.setText("Welcome back ".concat(admin));
 
         // setting up the date
@@ -81,44 +87,58 @@ public class AdminDashboard implements Initializable {
         date.getStyleClass().add("date");
         date.setText(currentDate);
 
-        try {
-            loadTable();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        loadTable();
     }
 
    public ObservableList<Student> getDefaultStudents() {
         // Adding the following Students below
-        students.add(new Student(1, "Chima", "Stella", "30/05/1996"));
-        students.add(new Student(2, "Zikora", "Somtochukwu", "30/05/2005"));
-        students.add(new Student(3, "Abunike", "Moses", "30/05/2000"));
-        students.add(new Student(4, "Obinka", "Ogechi", "30/05/2019"));
-        students.add(new Student(5, "Uzoanya", "Dominic", "30/05/1996"));
+        students.add(new Student(1, "Chima", "Stella", "30/05/1996", "Computer Science", "Isil"));
+        students.add(new Student(2, "Zikora", "Somtochukwu", "30/05/2005", "Mathematics", "Probability and Statistics"));
+        students.add(new Student(3, "Abunike", "Moses", "30/05/2000", "Biology", "Ecology"));
+        students.add(new Student(4, "Obinka", "Ogechi", "30/05/2019", "Biology", "Zoology"));
+        students.add(new Student(5, "Uzoanya", "Dominic", "30/05/1996", "Computer Science", "Acad"));
 
         return students;
     }
 
-//    public ObservableList<Specialty> getDefaultSpecialty() {
-//        // Adding the following Students below
-//        List<Student> computerStudents = new LinkedList<>();
-//
-//
-//
-//
-//        studentSpecialty.setName("Computer Specialty");
-//        studentSpecialty.setSector("Science Sector");
-//        studentSpecialty.setStudents(new List<Student>());
-//        students.add(new Student(1, "Chima", "Stella", "30/05/1996"));
-//        students.add(new Student(2, "Zikora", "Somtochukwu", "30/05/2005"));
-//        students.add(new Student(3, "Abunike", "Moses", "30/05/2000"));
-//        students.add(new Student(4, "Obinka", "Ogechi", "30/05/2019"));
-//        students.add(new Student(5, "Uzoanya", "Dominic", "30/05/1996"));
-//
-//        return students;
-//    }
+    public ObservableList<Specialty> getDefaultSpecialty() {
+        // Adding the following Students below
+        ObservableList<Specialty> specialties = FXCollections.observableArrayList();
 
-    private void loadTable () throws ParseException {
+        computerSpecialty.setName("Computer Science");
+        computerSpecialty.setStudents(getDefaultStudents());
+        computerSpecialty.setSector("Isil Sector");
+        computerSpecialty.setYearOfStudy(2019);
+        specialties.add(computerSpecialty);
+
+        // Default Maths Students
+        List<Student> mathsStudents = new ArrayList<>();
+        mathsStudents.add(new Student(22, "Burna", "Boy", "12/03/1876", mathsSpecialty.getName(), mathsSpecialty.getSector()));
+        mathsStudents.add(new Student(23, "Paul", "Eru", "21/03/2001", mathsSpecialty.getName(), mathsSpecialty.getSector()));
+        mathsStudents.add(new Student(24, "Mary", "Eru", "22/10/1990", mathsSpecialty.getName(), mathsSpecialty.getSector()));
+
+        mathsSpecialty.setName("Mathematics");
+        mathsSpecialty.setStudents(mathsStudents);
+        mathsSpecialty.setSector("Probability and Staticstics");
+        mathsSpecialty.setYearOfStudy(2019);
+        specialties.add(mathsSpecialty);
+
+        // Default Biology Students
+        List<Student> biologyStudents = new ArrayList<>();
+        biologyStudents.add(new Student(25, "Amara", "Obinka", "02/05/1995", computerSpecialty.getName(), computerSpecialty.getSector()));
+        biologyStudents.add(new Student(26, "Ebere", "Ofoedu", "18/03/1984", computerSpecialty.getName(), computerSpecialty.getSector()));
+        biologyStudents.add(new Student(27, "Prince", "Daniel", "12/10/1920", computerSpecialty.getName(), computerSpecialty.getSector()));
+
+        biologySpecialty.setName("Biology");
+        biologySpecialty.setStudents(biologyStudents);
+        biologySpecialty.setSector("Ecology");
+        biologySpecialty.setYearOfStudy(2019);
+        specialties.add(biologySpecialty);
+
+        return specialties;
+    }
+
+    private void loadTable () {
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         dateOfBirth.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
@@ -140,7 +160,7 @@ public class AdminDashboard implements Initializable {
     }
 
     public static void handleAddStudent(Student student){
-        students.add(new Student(student.getRegistrationNumber(), student.getName(), student.getFirstName(), student.getDateOfBirth()));
+        students.add(new Student(student.getRegistrationNumber(), student.getName(), student.getFirstName(), student.getDateOfBirth(), student.getSpecialty(), student.getSector()));
         System.out.println("Successfully added Student " + student.getName() + " " + student.getFirstName());
     }
 
@@ -196,11 +216,13 @@ public class AdminDashboard implements Initializable {
 
                         if(studentExists == false) {
                             AddStudent.showAlert(Alert.AlertType.INFORMATION, "No Results", "NO STUDENT FOUND!", "Search Found no Student matching the Provided Registration Number.");
+                        } else {
+                            displaySearchResults();
                         }
                     }catch(NumberFormatException ex){
                         AddStudent.showAlert(Alert.AlertType.ERROR, "Incorrect Input Format", "NO STUDENT FOUND!", "Only Numbers allowed.");
                     }
-                    displaySearchResults();
+
                     break;
 
                 case "Name":
@@ -214,11 +236,13 @@ public class AdminDashboard implements Initializable {
 
                     if(studentExists == false) {
                         AddStudent.showAlert(Alert.AlertType.INFORMATION, "No Results", "NO STUDENT FOUND!", "Search Found no Student matching the Provided Name.");
+                    } else {
+                        for (Student student: returnedStudents) {
+                            System.out.println(student.getFirstName() + " " + student.getName() );
+                        }
+                        displaySearchResults();
                     }
-                    for (Student student: returnedStudents) {
-                        System.out.println(student.getFirstName() + " " + student.getName() );
-                    }
-                    displaySearchResults();
+
                     break;
 
                 case "First Name":
@@ -232,11 +256,13 @@ public class AdminDashboard implements Initializable {
 
                     if(studentExists == false) {
                         AddStudent.showAlert(Alert.AlertType.INFORMATION, "No Results", "NO STUDENT FOUND!", "Search Found no Student matching the Provided Name.");
+                    } else {
+                        for (Student student: returnedStudents) {
+                            System.out.println(student.getName() + " " + student.getFirstName());
+                        }
+                        displaySearchResults();
                     }
-                    for (Student student: returnedStudents) {
-                        System.out.println(student.getName() + " " + student.getFirstName());
-                    }
-                    displaySearchResults();
+
                     break;
 
                 case "Date of Birth":
@@ -249,11 +275,13 @@ public class AdminDashboard implements Initializable {
                     }
                     if(studentExists == false) {
                         AddStudent.showAlert(Alert.AlertType.INFORMATION, "No Results", "NO STUDENT FOUND!", "Search Found no Student. Please make sure you provide a correct birthday.");
+                    } else {
+                        for (Student student: returnedStudents) {
+                            System.out.println(student.getName() + " " + student.getFirstName());
+                        }
+                        displaySearchResults();
                     }
-                    for (Student student: returnedStudents) {
-                        System.out.println(student.getName() + " " + student.getFirstName());
-                    }
-                    displaySearchResults();
+
                     break;
 
                 default:
@@ -270,7 +298,22 @@ public class AdminDashboard implements Initializable {
                     break;
 
                 case "Specialty":
-                    System.out.println("Specialty");
+                    System.out.println("Searching by Specialty");
+                    for(Student student: studentList){
+                        if(student.getSpecialty().contains(searchText)) {
+                            returnedStudents.add(student);
+                            studentExists = true;
+                        }
+                    }
+                    if(studentExists == false) {
+                        AddStudent.showAlert(Alert.AlertType.INFORMATION, "No Results", "NO STUDENT FOUND!", "Search Found no Student. Please make sure you provide a correct birthday.");
+                    } else {
+                        for (Student student: returnedStudents) {
+                            System.out.println(student.getName() + " " + student.getFirstName());
+                        }
+                        displaySearchResults();
+                    }
+
                     break;
 
                 default:

@@ -8,21 +8,23 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="324.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.barman.controllers.SearchResults">
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.barman.controllers.SearchResults">
    <children>
-      <Label fx:id="searchStat" alignment="CENTER" prefHeight="57.0" prefWidth="775.0" text="Found Result(s)">
+      <Label fx:id="searchStat" alignment="CENTER" prefHeight="57.0" prefWidth="1309.0" text="Found Result(s)">
          <padding>
             <Insets bottom="20.0" top="20.0" />
          </padding>
       </Label>
       <ScrollPane>
          <content>
-            <TableView fx:id="returnedSearchTable" prefHeight="200.0" prefWidth="774.0">
+            <TableView fx:id="returnedSearchTable" prefHeight="200.0" prefWidth="1306.0">
               <columns>
                 <TableColumn fx:id="registrationNumber" prefWidth="125.0" text="Registration Number" />
                 <TableColumn fx:id="name" minWidth="21.0" prefWidth="265.0" text="Name" />
                   <TableColumn fx:id="firstName" minWidth="100.0" prefWidth="265.0" text="First Name" />
                   <TableColumn fx:id="dateOfBirth" prefWidth="119.0" text="Date of Birth" />
+                  <TableColumn fx:id="specialty" prefWidth="265.0" text="Specialty" />
+                  <TableColumn fx:id="sector" prefWidth="265.0" text="Sector" />
               </columns>
             </TableView>
          </content>
