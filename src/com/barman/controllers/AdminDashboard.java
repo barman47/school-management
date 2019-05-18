@@ -2,9 +2,11 @@ package com.barman.controllers;
 
 import com.barman.Specialty;
 import com.barman.Student;
+import com.barman.Teacher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -72,8 +75,8 @@ public class AdminDashboard implements Initializable {
 
     Specialty biologySpecialty = new Specialty();
 
-    // The Specialty
-    private Specialty studentSpecialty = new Specialty();
+    // List of Teachers
+    private ObservableList<Teacher> teachers = FXCollections.observableArrayList();
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -92,13 +95,24 @@ public class AdminDashboard implements Initializable {
 
    public ObservableList<Student> getDefaultStudents() {
         // Adding the following Students below
-        students.add(new Student(1, "Chima", "Stella", "30/05/1996", "Computer Science", "Isil"));
-        students.add(new Student(2, "Zikora", "Somtochukwu", "30/05/2005", "Mathematics", "Probability and Statistics"));
-        students.add(new Student(3, "Abunike", "Moses", "30/05/2000", "Biology", "Ecology"));
-        students.add(new Student(4, "Obinka", "Ogechi", "30/05/2019", "Biology", "Zoology"));
-        students.add(new Student(5, "Uzoanya", "Dominic", "30/05/1996", "Computer Science", "Acad"));
+        students.add(new Student(1, "Chima", "Stella", "30/05/1996", "Computer Science", "Chima Stella", "Isil"));
+        students.add(new Student(2, "Zikora", "Somtochukwu", "30/05/2005", "Mathematics", "Somtochukwu Zikora", "Probability and Statistics"));
+        students.add(new Student(3, "Abunike", "Moses", "30/05/2000", "Biology", "Ogechi Obinka", "Ecology"));
+        students.add(new Student(4, "Obinka", "Ogechi", "30/05/2019", "Biology", "Ogechi Obinka", "Zoology"));
+        students.add(new Student(5, "Uzoanya", "Dominic", "30/05/1996", "Computer Science", "Chima Stella", "Acad"));
 
         return students;
+    }
+
+    public ObservableList<Teacher> getDefaultTeachers() {
+        // Adding the following Students below
+        teachers.add(new Teacher("Chima", "Stella", "30/08/1996", "Computer Module", "PhD", "Isil"));
+        teachers.add(new Teacher("Uzoanya", "Dominic", "30/05/1996", "Computer Module", "PhD", "Acad"));
+
+        teachers.add(new Teacher("Zikora", "Somtochukwu", "23/05/1987", "Mathematics Module", "PhD", "Probability and Statistics"));
+        teachers.add(new Teacher("Obinka", "Ogechi", "30/05/2019", "Biology Module", "PhD", "Zoology"));
+
+        return teachers;
     }
 
     public ObservableList<Specialty> getDefaultSpecialty() {
@@ -113,9 +127,9 @@ public class AdminDashboard implements Initializable {
 
         // Default Maths Students
         List<Student> mathsStudents = new ArrayList<>();
-        mathsStudents.add(new Student(22, "Burna", "Boy", "12/03/1876", mathsSpecialty.getName(), mathsSpecialty.getSector()));
-        mathsStudents.add(new Student(23, "Paul", "Eru", "21/03/2001", mathsSpecialty.getName(), mathsSpecialty.getSector()));
-        mathsStudents.add(new Student(24, "Mary", "Eru", "22/10/1990", mathsSpecialty.getName(), mathsSpecialty.getSector()));
+        mathsStudents.add(new Student(22, "Burna", "Boy", "12/03/1876", mathsSpecialty.getName(), "Zikora Somtochukwu", mathsSpecialty.getSector()));
+        mathsStudents.add(new Student(23, "Paul", "Eru", "21/03/2001", mathsSpecialty.getName(), "Zikora Somtochukwu", mathsSpecialty.getSector()));
+        mathsStudents.add(new Student(24, "Mary", "Eru", "22/10/1990", mathsSpecialty.getName(), "Zikora Somtochukwu", mathsSpecialty.getSector()));
 
         mathsSpecialty.setName("Mathematics");
         mathsSpecialty.setStudents(mathsStudents);
@@ -125,9 +139,9 @@ public class AdminDashboard implements Initializable {
 
         // Default Biology Students
         List<Student> biologyStudents = new ArrayList<>();
-        biologyStudents.add(new Student(25, "Amara", "Obinka", "02/05/1995", computerSpecialty.getName(), computerSpecialty.getSector()));
-        biologyStudents.add(new Student(26, "Ebere", "Ofoedu", "18/03/1984", computerSpecialty.getName(), computerSpecialty.getSector()));
-        biologyStudents.add(new Student(27, "Prince", "Daniel", "12/10/1920", computerSpecialty.getName(), computerSpecialty.getSector()));
+        biologyStudents.add(new Student(25, "Amara", "Obinka", "02/05/1995", biologySpecialty.getName(), "Ogechi Obinka", biologySpecialty.getSector()));
+        biologyStudents.add(new Student(26, "Ebere", "Ofoedu", "18/03/1984", biologySpecialty.getName(), "Ogechi Obinka", biologySpecialty.getSector()));
+        biologyStudents.add(new Student(27, "Prince", "Daniel", "12/10/1920", biologySpecialty.getName(), "Ogechi Obinka", biologySpecialty.getSector()));
 
         biologySpecialty.setName("Biology");
         biologySpecialty.setStudents(biologyStudents);
@@ -160,7 +174,7 @@ public class AdminDashboard implements Initializable {
     }
 
     public static void handleAddStudent(Student student){
-        students.add(new Student(student.getRegistrationNumber(), student.getName(), student.getFirstName(), student.getDateOfBirth(), student.getSpecialty(), student.getSector()));
+        students.add(new Student(student.getRegistrationNumber(), student.getName(), student.getFirstName(), student.getDateOfBirth(), student.getSpecialty(), student.getTeacher(), student.getSector()));
         System.out.println("Successfully added Student " + student.getName() + " " + student.getFirstName());
     }
 
@@ -237,9 +251,6 @@ public class AdminDashboard implements Initializable {
                     if(studentExists == false) {
                         AddStudent.showAlert(Alert.AlertType.INFORMATION, "No Results", "NO STUDENT FOUND!", "Search Found no Student matching the Provided Name.");
                     } else {
-                        for (Student student: returnedStudents) {
-                            System.out.println(student.getFirstName() + " " + student.getName() );
-                        }
                         displaySearchResults();
                     }
 
@@ -257,9 +268,6 @@ public class AdminDashboard implements Initializable {
                     if(studentExists == false) {
                         AddStudent.showAlert(Alert.AlertType.INFORMATION, "No Results", "NO STUDENT FOUND!", "Search Found no Student matching the Provided Name.");
                     } else {
-                        for (Student student: returnedStudents) {
-                            System.out.println(student.getName() + " " + student.getFirstName());
-                        }
                         displaySearchResults();
                     }
 
@@ -276,9 +284,6 @@ public class AdminDashboard implements Initializable {
                     if(studentExists == false) {
                         AddStudent.showAlert(Alert.AlertType.INFORMATION, "No Results", "NO STUDENT FOUND!", "Search Found no Student. Please make sure you provide a correct birthday.");
                     } else {
-                        for (Student student: returnedStudents) {
-                            System.out.println(student.getName() + " " + student.getFirstName());
-                        }
                         displaySearchResults();
                     }
 
@@ -293,8 +298,19 @@ public class AdminDashboard implements Initializable {
         if(moduleSpecialtyComboBox.getSelectionModel().getSelectedItem().toString() != nonSelected && studentCategoryComboBox.getSelectionModel().getSelectedItem().toString().equals(nonSelected)) {
             searchCategory = moduleSpecialtyComboBox.getSelectionModel().getSelectedItem().toString();
             switch(searchCategory){
-                case "Module":
-                    System.out.println("Module");
+                case "Teacher":
+                    System.out.println("Searching by Teacher");
+                    for(Student student: studentList){
+                        if(student.getTeacher().toLowerCase().contains(searchText.toLowerCase())) {
+                            returnedStudents.add(student);
+                            studentExists = true;
+                        }
+                    }
+                    if(studentExists == false) {
+                        AddStudent.showAlert(Alert.AlertType.INFORMATION, "No Results", "NO STUDENT FOUND!", "Search Found no Student. Please make sure you provide a correct birthday.");
+                    } else {
+                        displaySearchResults();
+                    }
                     break;
 
                 case "Specialty":
@@ -308,9 +324,6 @@ public class AdminDashboard implements Initializable {
                     if(studentExists == false) {
                         AddStudent.showAlert(Alert.AlertType.INFORMATION, "No Results", "NO STUDENT FOUND!", "Search Found no Student. Please make sure you provide a correct birthday.");
                     } else {
-                        for (Student student: returnedStudents) {
-                            System.out.println(student.getName() + " " + student.getFirstName());
-                        }
                         displaySearchResults();
                     }
 
@@ -333,6 +346,12 @@ public class AdminDashboard implements Initializable {
         window.centerOnScreen();
         window.initModality(Modality.APPLICATION_MODAL);
         window.show();
+        window.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent windowEvent) {
+                AdminDashboard.clearSearchList();
+            }
+        });
     }
 
     public static ObservableList<Student> getFoundStudents(){

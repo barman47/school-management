@@ -25,6 +25,7 @@
                   <TableColumn fx:id="dateOfBirth" prefWidth="119.0" text="Date of Birth" />
                   <TableColumn fx:id="specialty" prefWidth="265.0" text="Specialty" />
                   <TableColumn fx:id="sector" prefWidth="265.0" text="Sector" />
+                  <TableColumn fx:id="teacher" prefWidth="265.0" text="Teacher" />
               </columns>
             </TableView>
          </content>

@@ -109,6 +109,23 @@ public class AddStudent implements Initializable {
                 newStudent.setSpecialty(new SimpleStringProperty(specialtyComboBox.getSelectionModel().getSelectedItem().toString()));
                 newStudent.setSector(new SimpleStringProperty(sectorComboBox.getSelectionModel().getSelectedItem().toString()));
 
+                switch(specialtyComboBox.getSelectionModel().getSelectedItem().toString()) {
+                    case "Computer Science":
+                        newStudent.setTeacher(new SimpleStringProperty("Chima Stella"));
+                        break;
+
+                    case "Mathematics":
+                        newStudent.setTeacher(new SimpleStringProperty("Somtochukwu Zikora"));
+                        break;
+
+                    case "Biology":
+                        newStudent.setTeacher(new SimpleStringProperty("Ogechi Obinka"));
+                        break;
+
+                    default:
+                        System.out.println("Default Teacher");
+                }
+
                 AdminDashboard.handleAddStudent(newStudent);
                 clearInputs();
                 setNewStudentNumber();

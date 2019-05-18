@@ -1,6 +1,5 @@
 package com.barman;
 
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import java.time.LocalDate;
 import java.time.Month;
@@ -8,19 +7,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class Person {
-    private SimpleIntegerProperty registrationNumber;
     private SimpleStringProperty name;
     private SimpleStringProperty firstName;
     private SimpleStringProperty dateOfBirth;
 
     public Person(){
-        this.registrationNumber = new SimpleIntegerProperty(0);
         this.name = new SimpleStringProperty("");
         this.firstName = new SimpleStringProperty("");
         this.dateOfBirth = new SimpleStringProperty("");
     }
 
-    public Person(int registrationNumber, String name, String firstName, String dateOfBirth){
+    public Person(String name, String firstName, String dateOfBirth){
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/uuuu", Locale.ENGLISH);
         LocalDate date = LocalDate.parse(dateOfBirth, dateFormatter);
 
@@ -31,18 +28,9 @@ public class Person {
 
         String mainDate = day + "/" + monthAsInt + "/" + year;
 
-        this.registrationNumber = new SimpleIntegerProperty(registrationNumber);
         this.name = new SimpleStringProperty(name);
         this.firstName = new SimpleStringProperty(firstName);
         this.dateOfBirth = new SimpleStringProperty(mainDate);
-    }
-
-    public int getRegistrationNumber(){
-        return this.registrationNumber.get();
-    }
-
-    public void setRegistrationNumber(SimpleIntegerProperty registrationNumber){
-        this.registrationNumber = registrationNumber;
     }
 
     public String getName(){

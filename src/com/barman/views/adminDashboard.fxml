@@ -85,8 +85,8 @@
                        <items>
                            <FXCollections fx:factory="observableArrayList">
                                <String fx:value="None Selected" />
-                               <String fx:value="Module" />
                                <String fx:value="Specialty" />
+                               <String fx:value="Teacher" />
                            </FXCollections>
                        </items>
                    </ComboBox>
