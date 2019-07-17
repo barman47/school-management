@@ -18,7 +18,7 @@ public class Person {
     }
 
     public Person(String name, String firstName, String dateOfBirth){
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/uuuu", Locale.ENGLISH);
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/M/uuuu", Locale.ENGLISH);
         LocalDate date = LocalDate.parse(dateOfBirth, dateFormatter);
 
         int year = date.getYear();
@@ -54,7 +54,7 @@ public class Person {
     }
 
     public void setDateOfBirth(String dateOfBirth){
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/uuuu", Locale.ENGLISH);
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/M/uuuu", Locale.ENGLISH);
         LocalDate date = LocalDate.parse(dateOfBirth, dateFormatter);
 
         int year = date.getYear();

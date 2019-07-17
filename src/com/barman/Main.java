@@ -11,7 +11,6 @@ public class Main extends Application {
     public void start(Stage window) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("views/login.fxml"));
         window.setTitle("Admin Login");
-//        Scene loginScene = new Scene(root, 1280, 768);
         Scene loginScene = new Scene(root, 300, 275);
         window.setResizable(false);
         window.setScene(loginScene);
@@ -20,6 +19,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(args);
     }
 }
